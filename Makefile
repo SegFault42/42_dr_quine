@@ -1,17 +1,30 @@
-NAME = Colleen
+#	Library output
 
-SRC = Colleen.c
+#	GCC flags
 
-OBJS = Colleen.o
+#	Sources
 
-all: $(NAME)
-	gcc -c $(SRC)
-	gcc -o $(NAME) $(OBJS)
+all:
+	make -C ./Colleen/
+	make -C ./Grace/
+	make -C ./Sully/
 
-clean :
-	rm -fr $(OBJS)
+# To remove generated files
+clean:
+	make clean -C ./Colleen/
+	make clean -C ./Grace/
+	make clean -C ./Sully/
 
-fclean : clean
-	rm -fr Colleen
+fclean:
+	@echo "RM\tprojet ($(NAME))"
+	make fclean -C ./Colleen/
+	make fclean -C ./Grace/
+	make fclean -C ./Sully/
 
-re : fclean all
+re: fclean all
+
+git:
+	@git add .
+	@echo "Enter Your Commit :"
+	@read var1 ; git commit -m "$$var1"
+	@git push
